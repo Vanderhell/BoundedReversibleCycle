@@ -11,5 +11,6 @@ int main(void)
     }
     { brc32_ctx_t c; if(!brc32_init_with_delta_v1(&c,12u,5u,0u)||brc32_init_with_delta_v1(&c,12u,0u,0u)||brc32_init_with_delta_v1(&c,12u,12u,0u)||brc32_init_with_delta_v1(NULL,1u,0u,0u)||!brc32_init_with_delta_v1(&c,1u,0u,0u)) return 1; }
     { static const uint32_t ds[]={1u,11u,5u,7u}; size_t q; for(q=0u;q<sizeof(ds)/sizeof(ds[0]);++q){brc32_ctx_t c;uint32_t x=0u,k;if(!brc32_init_with_delta_v1(&c,12u,ds[q],7u))return 1;for(k=0u;k<12u;++k)x=brc32_forward_v1(x,&c);if(x!=0u)return 1;} }
+    { brc32_ctx_t c;uint32_t start;if(!brc32_init_with_delta_v1(&c,12u,4u,9u))return 1;for(start=0u;start<12u;++start){uint8_t seen[12]={0};uint32_t x=start,k;for(k=0u;k<3u;++k){uint32_t y;if(seen[x]!=0u)return 1;seen[x]=1u;y=brc32_forward_v1(x,&c);if(brc32_inverse_v1(y,&c)!=x)return 1;x=y;}if(x!=start){fprintf(stderr,"noncoprime delta=4 N=12 start=%u closure=%u\n",start,x);return 1;}} }
     puts("inverse, generated coprime steps, invalid delta: PASS"); return 0;
 }
