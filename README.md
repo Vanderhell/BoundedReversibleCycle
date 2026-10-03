@@ -58,4 +58,4 @@ The step is reduced modulo the domain as part of the bounded rotation. Coprimali
 
 ## License
 
-No license has been selected yet.
+Licensed under the Apache License, Version 2.0. See [LICENSE](LICENSE).
