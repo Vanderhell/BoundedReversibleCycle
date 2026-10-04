@@ -1,0 +1,8 @@
+cmake_minimum_required(VERSION 3.16)
+set(EXTRA_COMPONENT_DIRS components/portable)
+set(COMPONENTS main)
+if(NOT DEFINED HW_OPT)
+  set(HW_OPT -Os)
+endif()
+include($ENV{IDF_PATH}/tools/cmake/project.cmake)
+project(brc_esp32s3_hw)

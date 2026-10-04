@@ -1,0 +1,7 @@
+idf_component_register(SRCS "main.c" INCLUDE_DIRS "." REQUIRES portable)
+target_compile_options(${COMPONENT_LIB} PRIVATE ${HW_OPT} -Wall -Wextra)
+if(HW_OPT STREQUAL "-Os")
+  target_compile_definitions(${COMPONENT_LIB} PRIVATE HW_OPT_LABEL="-Os" HW_RUN_COUNT=3)
+else()
+  target_compile_definitions(${COMPONENT_LIB} PRIVATE HW_OPT_LABEL="-O2" HW_RUN_COUNT=1)
+endif()
